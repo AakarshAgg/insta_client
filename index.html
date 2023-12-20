@@ -54,7 +54,7 @@
 
         const registerUser = async (value) => {
             try {
-                const resp = await fetch("http://localhost:5010/api/auth/signup", {
+                const resp = await fetch("https://nodejs-production-6065.up.railway.app/api/auth/signup", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(value)
