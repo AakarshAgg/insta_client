@@ -30,8 +30,8 @@
             method:"GET",
             credentials:"include"
         });
-        console.log("status",resp.status)
-          
+        console.log(resp.status)
+        if(resp.status!==200){window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"}
         const {data} = await resp.json();
         const userName = document.getElementById("userName")
         const userEmail = document.getElementById("userEmail")
@@ -42,7 +42,7 @@
         
        } catch (error) {
             console.log(error.message)
-            window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"
+        //    window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"
        }
     } 
 
@@ -51,7 +51,7 @@
     const logout=document.getElementById("logout")
     logout.addEventListener("click",async()=>{
        try {
-        const response = await fetch("https://nodejs-production-6065.up.railway.app/api/auth/logout",{
+        const response = await fetch("https://https://nodejs-production-6065.up.railway.app/api/auth/logout",{
             method:"GET",
             credentials:"include"
         });
