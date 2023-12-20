@@ -31,7 +31,7 @@
             credentials:"include"
         });
         console.log(resp.status)
-        if(resp.status!==200){window.location.href="http://localhost:5502/Loginpage.html"}
+        if(resp.status!==200){window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"}
         const {data} = await resp.json();
         const userName = document.getElementById("userName")
         const userEmail = document.getElementById("userEmail")
