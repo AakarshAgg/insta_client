@@ -30,7 +30,7 @@
             method:"GET",
             credentials:"include"
         });
-        console.log(resp.status)
+        console.log("status",resp.status)
         if(resp.status!==200){window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"}
         const {data} = await resp.json();
         const userName = document.getElementById("userName")
