@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <link rel="stylesheet" href="SignUpPage.css">
+</head>
+
+<body>
+    <div class="section">
+        <form action="">
+            <h1>Instagram SignUp</h1>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+
+            <label for="bio">Bio</label>
+            <input type="text" id="bio" name="bio" required>
+            <button type="submit" id="formsubmit"> SignUp</button>
+            <div class="bt">Already have an account?<a href="Loginpage.html">Log In</a></div>
+        </form>
+
+    </div>
+    <script>
+        const submit = document.getElementById("formsubmit")
+        submit.addEventListener("click", (e) => {
+            e.preventDefault()
+            const nameOfUser = document.getElementById("name").value
+            const userName = document.getElementById("username").value
+            const userEmail = document.getElementById("email").value
+            const userPassword = document.getElementById("password").value
+            const userBio = document.getElementById("bio").value
+
+
+            const userData = {
+                name: nameOfUser,
+                email: userEmail,
+                bio: userBio,
+                password: userPassword,
+                username: userName
+            }
+
+            registerUser(userData)
+
+        })
+
+        const registerUser = async (value) => {
+            try {
+                const resp = await fetch("http://localhost:5010/api/auth/signup", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(value)
+                })
+
+                const data = await resp.json()
+                console.log(data)
+                if (data.success) {
+                    alert("Registration Successfully.Please Log In now.")
+                    window.location.href="http://localhost:5502/Loginpage.html"
+                }else{
+                    alert(`${data.message}`)
+                }
+
+                
+              
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    </script>
+</body>

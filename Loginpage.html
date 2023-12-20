@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="Loginpage.css">
+</head>
+
+<body>
+  <div class="section">
+    <form action="">
+      <h1>Instagram Login</h1>
+      <input type="text" id="username" placeholder="Username" name="username" >
+      <input type="password" id="password" placeholder="Password" name="password">
+      <button type="submit" id="submit"> Submit</button>
+    </form>
+    <div>
+      <a>New User?</a>
+      <a class="m-x" href="index.html">Sign Up</a>
+    </div>
+  </div>
+</body>
+<script>
+  const formSubmit = document.getElementById("submit")
+
+  formSubmit.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const userName = document.getElementById("username").value
+    const userPassword = document.getElementById("password").value
+    const userData = {
+      username: userName,
+      password: userPassword
+    }
+
+    loginUser(userData)
+
+  })
+
+
+  const loginUser = async (value) => {
+    try {
+
+      const resp = await fetch("http://localhost:5010/api/auth/signin", {
+        method: "POST",
+        credentials: 'include',
+        redirect: 'follow',
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(value)
+      })
+
+      const data = await resp.json();
+      console.log(data)
+      if (data.success) {
+        console.log(data)
+       alert(`${data.message}`)
+       window.location.href = "http://localhost:5502/User.html";
+      }else{
+        alert(`${data.message}`)
+      }
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="User.css">
+</head>
+
+<body>
+    <nav>
+        <button class="logout" id="logout">Logout</button>
+    </nav>
+    <div class="main">
+        <div class="section">
+            <img src="https://img.freepik.com/free-photo/retinal-biometrics-technology-with-man-s-eye-digital-remix_53876-108518.jpg?size=626&ext=jpg&ga=GA1.1.525968856.1702969144&semt=ais" width="150x" height="150px">
+                <h2 id="userName"></h2>
+           <p class="cl2" id="userBio"></p>
+           <p class="cl" id="userEmail"></p>
+           <p class="cl">Followers:1000</p>
+        </div>
+    </div>
+    
+</body>
+<script>
+    const userData = async() =>{
+       try {
+        const resp = await fetch("http://localhost:5010/api/auth/user",{
+            method:"GET",
+            credentials:"include"
+        });
+        console.log(resp.status)
+        if(resp.status!==200){window.location.href="http://localhost:5502/Loginpage.html"}
+        const {data} = await resp.json();
+        const userName = document.getElementById("userName")
+        const userEmail = document.getElementById("userEmail")
+        const userBio = document.getElementById("userBio")
+        userName.innerText=data.username;
+        userEmail.innerText=data.email;
+        userBio.innerText=data.bio
+        
+       } catch (error) {
+            console.log(error.message)
+            window.location.href="http://localhost:5502/Loginpage.html"
+       }
+    } 
+
+    userData()
+
+    const logout=document.getElementById("logout")
+    logout.addEventListener("click",async()=>{
+       try {
+        const response = await fetch("http://localhost:5010/api/auth/logout",{
+            method:"GET",
+            credentials:"include"
+        });
+        
+        const data=await response.json()
+        
+         if(data.success){
+            console.log(data)
+            alert(`${data.message}`)
+            window.location.href="http://localhost:5502/Loginpage.html"
+         }
+
+       } catch (error) {
+        console.log(error)
+       }
+    })
+</script>
+</html>
