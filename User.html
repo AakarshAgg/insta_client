@@ -33,6 +33,7 @@
         console.log(resp.status)
         if(resp.status!==200){window.location.href="https://neon-granita-83eb8a.netlify.app/Loginpage.html"}
         const {data} = await resp.json();
+           console.log(data)
         const userName = document.getElementById("userName")
         const userEmail = document.getElementById("userEmail")
         const userBio = document.getElementById("userBio")
@@ -41,7 +42,7 @@
         userBio.innerText=data.bio
         
        } catch (error) {
-            console.log("ES",error.message)
+            console.log(error.message)
        }
     } 
 
