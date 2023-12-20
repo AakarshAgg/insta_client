@@ -43,7 +43,7 @@
   const loginUser = async (value) => {
     try {
 
-      const resp = await fetch("http://localhost:5010/api/auth/signin", {
+      const resp = await fetch("http://nodejs-production-6065.up.railway.app/api/auth/signin", {
         method: "POST",
         credentials: 'include',
         redirect: 'follow',
