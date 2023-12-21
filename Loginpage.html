@@ -52,14 +52,15 @@
       })
 
       const data = await resp.json();
-     // if (data.success) {
-     //   console.log(data)
-     //  alert(`${data.message}`)
-     //  window.location.href = "https://neon-granita-83eb8a.netlify.app/User.html";
-     // }else{
-     //   alert(`${data.message}`)
-     // }
-window.location.href = "https://neon-granita-83eb8a.netlify.app/User.html";
+     if (data.success) {
+       console.log(data)
+      alert(`${data.message}`)
+      window.location.href = "https://neon-granita-83eb8a.netlify.app/User.html";
+     }else{
+       alert(`${data.message}`)
+     }
+
+      //window.location.href = "https://neon-granita-83eb8a.netlify.app/User.html";
     } catch (error) {
       console.log(error.message)
     }
